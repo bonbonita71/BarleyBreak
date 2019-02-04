@@ -14,6 +14,21 @@ public class Assets
     //static names for assets, for easear usage
     public static String LOGO = "images/logo.png";
     public static String GAME_FIELD = "images/breaks_and_field/gamefield.png";
+    public static String BREAK_01 = "images/breaks_and_field/01.png";
+    public static String BREAK_02 = "images/breaks_and_field/02.png";
+    public static String BREAK_03 = "images/breaks_and_field/03.png";
+    public static String BREAK_04 = "images/breaks_and_field/04.png";
+    public static String BREAK_05 = "images/breaks_and_field/05.png";
+    public static String BREAK_06 = "images/breaks_and_field/06.png";
+    public static String BREAK_07 = "images/breaks_and_field/07.png";
+    public static String BREAK_08 = "images/breaks_and_field/08.png";
+    public static String BREAK_09 = "images/breaks_and_field/09.png";
+    public static String BREAK_10 = "images/breaks_and_field/10.png";
+    public static String BREAK_11 = "images/breaks_and_field/11.png";
+    public static String BREAK_12 = "images/breaks_and_field/12.png";
+    public static String BREAK_13 = "images/breaks_and_field/13.png";
+    public static String BREAK_14 = "images/breaks_and_field/14.png";
+    public static String BREAK_15 = "images/breaks_and_field/15.png";
 
     private static AssetManager assetManager;
     public static BitmapFont loadingFont;
@@ -39,6 +54,22 @@ public class Assets
     public static void load(){
         assetManager.load(LOGO, Texture.class);
         assetManager.load(GAME_FIELD, Texture.class);
+        assetManager.load(BREAK_01,Texture.class);
+        assetManager.load(BREAK_02,Texture.class);
+        assetManager.load(BREAK_03,Texture.class);
+        assetManager.load(BREAK_04,Texture.class);
+        assetManager.load(BREAK_05,Texture.class);
+        assetManager.load(BREAK_06,Texture.class);
+        assetManager.load(BREAK_07,Texture.class);
+        assetManager.load(BREAK_08,Texture.class);
+        assetManager.load(BREAK_09,Texture.class);
+        assetManager.load(BREAK_10,Texture.class);
+        assetManager.load(BREAK_11,Texture.class);
+        assetManager.load(BREAK_12,Texture.class);
+        assetManager.load(BREAK_13,Texture.class);
+        assetManager.load(BREAK_14,Texture.class);
+        assetManager.load(BREAK_15,Texture.class);
+
     }
 
     public static float getProgress()
