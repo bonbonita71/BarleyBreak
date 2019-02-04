@@ -16,6 +16,7 @@ public class Assets
 
     private static AssetManager assetManager;
     public static BitmapFont loadingFont;
+    public static BitmapFont loadingFont1;
 
     public static void init(){
         assetManager = new AssetManager();
@@ -23,11 +24,15 @@ public class Assets
         float fontSize = .5f;
         loadingFont = new BitmapFont(Gdx.files.internal("fonts/myfont.fnt"));
         loadingFont.getData().setScale(fontSize, fontSize);
+
+        loadingFont1 = new BitmapFont(Gdx.files.internal("fonts/myfont.fnt"));
+        loadingFont1.getData().setScale(fontSize *3, fontSize*3);
     }
 
     public static void dispose(){
         assetManager.dispose();
         loadingFont.dispose();
+        loadingFont1.dispose();
     }
 
     public static void load(){

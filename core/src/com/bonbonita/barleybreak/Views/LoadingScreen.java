@@ -20,7 +20,9 @@ public class LoadingScreen implements Screen {
     private ShapeRenderer shapeRenderer;
     private float progress;
     private float titleWidth;
+    private float titleWidth1;
     private String TITLE = "Loading";
+    private String TITLE1 = " Game: Barley Break";
 
     public LoadingScreen(BarleyBreak app) {
         this.app = app;
@@ -32,6 +34,10 @@ public class LoadingScreen implements Screen {
         GlyphLayout layout = new GlyphLayout();
         layout.setText(Assets.loadingFont, TITLE);
         titleWidth = layout.width;
+
+        GlyphLayout layout1 = new GlyphLayout();
+        layout1.setText(Assets.loadingFont1, TITLE1);
+        titleWidth1 = layout1.width ;
     }
 
 
@@ -58,7 +64,7 @@ public class LoadingScreen implements Screen {
         batch.enableBlending();
         // draw title
         Assets.loadingFont.draw(batch, TITLE, (app.SCREEN_WIDTH - titleWidth) / 2 - 1, app.SCREEN_HEIGHT / 2 + 50);
-        //Assets.loadingFont.draw(batch, TITLE1, (app.SCREEN_WIDTH - titleWidth) / 2 - 1, app.SCREEN_HEIGHT / 2 - 15);
+        Assets.loadingFont.draw(batch, TITLE1, (app.SCREEN_WIDTH - titleWidth1) / 2 - 1, app.SCREEN_HEIGHT / 2 - 15);
         batch.end();
 
         update(delta);
