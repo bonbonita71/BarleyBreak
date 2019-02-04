@@ -13,6 +13,7 @@ public class Assets
 {
     //static names for assets, for easear usage
     public static String LOGO = "images/logo.png";
+    public static String GAME_FIELD = "images/breaks_and_field/gamefield.png";
 
     private static AssetManager assetManager;
     public static BitmapFont loadingFont;
@@ -37,6 +38,7 @@ public class Assets
 
     public static void load(){
         assetManager.load(LOGO, Texture.class);
+        assetManager.load(GAME_FIELD, Texture.class);
     }
 
     public static float getProgress()
