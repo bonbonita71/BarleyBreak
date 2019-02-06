@@ -10,6 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.bonbonita.barleybreak.BarleyBreak;
 
+import java.util.Random;
+
 /**
  * Created by BonBonita on 04.02.2019.
  */
@@ -18,6 +20,10 @@ public class PlayScreen implements Screen{
     private final BarleyBreak app;
     private Stage stage;
 
+    int array[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+    int array4x4[][] = new int[4][4];
+
+
     public PlayScreen(BarleyBreak app) {
         this.app = app;
     }
@@ -25,41 +31,67 @@ public class PlayScreen implements Screen{
     @Override
     public void show() {
         stage = new Stage(new FitViewport(app.SCREEN_WIDTH, app.SCREEN_HEIGHT));
-        Gdx.input.setInputProcessor(stage);
-        Texture break_01_Texture = Assets.getTexture(Assets.BREAK_01);
-        Texture break_02_Texture = Assets.getTexture(Assets.BREAK_02);
-        Texture break_03_Texture = Assets.getTexture(Assets.BREAK_03);
-        Texture break_04_Texture = Assets.getTexture(Assets.BREAK_04);
-        Texture break_05_Texture = Assets.getTexture(Assets.BREAK_05);
-        Texture break_06_Texture = Assets.getTexture(Assets.BREAK_06);
-        Texture break_07_Texture = Assets.getTexture(Assets.BREAK_07);
-        Texture break_08_Texture = Assets.getTexture(Assets.BREAK_08);
-        Texture break_09_Texture = Assets.getTexture(Assets.BREAK_09);
-        Texture break_10_Texture = Assets.getTexture(Assets.BREAK_10);
-        Texture break_11_Texture = Assets.getTexture(Assets.BREAK_11);
-        Texture break_12_Texture = Assets.getTexture(Assets.BREAK_12);
-        Texture break_13_Texture = Assets.getTexture(Assets.BREAK_13);
-        Texture break_14_Texture = Assets.getTexture(Assets.BREAK_14);
-        Texture break_15_Texture = Assets.getTexture(Assets.BREAK_15);
 
+        //создание позиции в игре пятнашки
+        System.out.println("It's an array:");
+        PrintArray(array);
+        shuffleArray(array);
+        System.out.println("It's a shuffle array:");
+        PrintArray(array);
+        int k = 0;
+        for (int j = 0; j < 4; j++)
+            for(int i = 0; i < 4; i++)
+            {
+                array4x4[i][j] = array[k];
+                k++;
+            }
+        PrintArray4x4(array4x4);
+
+        //отображение игрового поля на экране
         Texture game_field_Texture = Assets.getTexture(Assets.GAME_FIELD);
         Image game_field = new Image(game_field_Texture);
         game_field.setScale((float)(app.SCREEN_WIDTH  / game_field.getWidth()),(float)(app.SCREEN_WIDTH  / game_field.getWidth() ));
         game_field.setPosition(0, app.SCREEN_HEIGHT/ 4);
         stage.addActor(game_field);
 
+        //создание массива пятнашек из класса Breek и отображение его на поле
 
-        Image break_01 = new Image(break_01_Texture);
-        break_01.setScale((float)(app.SCREEN_WIDTH  / game_field.getWidth()),(float)(app.SCREEN_WIDTH  / game_field.getWidth() ));
-        break_01.setPosition(0+20, app.SCREEN_HEIGHT/ 4 +20);
-        stage.addActor(break_01);
-
-        Image break_02 = new Image(break_02_Texture);
-        break_02.setScale((float)(app.SCREEN_WIDTH  / game_field.getWidth()),(float)(app.SCREEN_WIDTH  / game_field.getWidth() ));
-        break_02.setPosition(0 + 20+  break_01.getWidth()/2, app.SCREEN_HEIGHT/ 4 +20 );
-        System.out.print(break_01.getWidth());
-        stage.addActor(break_02);
     }
+
+    public static void shuffleArray(int[] a) {
+        int n = a.length;
+        Random random = new Random();
+        random.nextInt();
+        for (int i = 0; i < n; i++) {
+            int change = i + random.nextInt(n - i);
+            swap(a, i, change);
+        }
+    }
+    private static void swap(int[] a, int i, int change) {
+        int temp = a[i];
+        a[i] = a[change];
+        a[change] = temp;
+    }
+    private void PrintArray(int[] array)
+    {
+        for (int j = 0; j < 16; j++)
+            System.out.print(array[j] + " " );
+        System.out.println();
+    }
+
+    private void PrintArray4x4(int[][] array4x4)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            for(int i = 0; i < 4; i++)
+            {
+                System.out.print(array4x4[i][j] + " " );
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
 
     private void clearScreen(){
         Gdx.gl.glClearColor(Color.BLACK.r, Color.BLACK.g, Color.BLACK.b, Color.BLACK.a);
