@@ -1,6 +1,7 @@
 package com.bonbonita.barleybreak.Models;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.bonbonita.barleybreak.Views.Assets;
 
 /**
@@ -8,15 +9,25 @@ import com.bonbonita.barleybreak.Views.Assets;
  */
 
 public class Break {
-    int Num;        //цифра на пятнашке
-    int posX, posY; //позиция на экране
-    int posI, posJ; //позиция в матрице
-    Texture face;    //адрес текстуры, соответствующей Num
+    private int Num;        //цифра на пятнашке
+    private int posX, posY; //позиция на экране
+    private int posI, posJ; //позиция в матрице
+    private Texture face;    //адрес текстуры, соответствующей Num
+    private Image image;     //
 
-    Break(int num, int posI, int posJ){
+    private int ScreenWidth;
+    private int ScreenHeight;
+    private float FieldWidth;
+
+    public Break(int num, int posI, int posJ, int screenWidth, int screenHeight, float fieldWidth){
         this.Num = num;
         this.posI = posI;
         this.posJ = posJ;
+
+        this.ScreenWidth = screenWidth;
+        this.ScreenHeight = screenHeight;
+        this.FieldWidth = fieldWidth;
+
         switch (Num){
             case 1:
                 this.face = Assets.getTexture(Assets.BREAK_01);
@@ -64,14 +75,19 @@ public class Break {
                 this.face = Assets.getTexture(Assets.BREAK_15);
                 break;
         }
+        if(Num != 0)
+            this.image = new Image(face);
     }
 
     public void setPosX(){
-        this.posX = posI;//НАДО ПОРАБОТАТЬ НАД ФОРМУЛОЙ
+        //НАДО ПОРАБОТАТЬ НАД ФОРМУЛОЙ
+        this.posX = (30 + 512 * posI) * ScreenWidth / (int)FieldWidth ;
     }
 
     public void setPosY(){
-        this.posY = posJ;//НАДО ПОРАБОТАТЬ НАД ФОРМУЛОЙ
+        //НАДО ПОРАБОТАТЬ НАД ФОРМУЛОЙ
+        //this.posY = (ScreenHeight / 4 - 100 + 512 * 5  - 512 * posJ) * ScreenWidth / (int)FieldWidth ;
+        this.posY = ((ScreenHeight - 512 + 40) / 4 + 512 * 5  - 512 * posJ) * ScreenWidth / (int)FieldWidth ;
     }
 
     public int getPosX(){
@@ -80,5 +96,12 @@ public class Break {
 
     public int getPosY(){
         return posY;
+    }
+
+    public Image getImage(){
+        return this.image;
+    }
+    public int getNum(){
+        return Num;
     }
 }

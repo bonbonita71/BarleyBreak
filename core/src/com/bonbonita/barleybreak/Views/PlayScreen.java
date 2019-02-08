@@ -5,10 +5,13 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.bonbonita.barleybreak.BarleyBreak;
+import com.bonbonita.barleybreak.Models.Break;
 
 import java.util.Random;
 
@@ -45,7 +48,7 @@ public class PlayScreen implements Screen{
                 array4x4[i][j] = array[k];
                 k++;
             }
-        PrintArray4x4(array4x4);
+        PrintArray(array4x4);
 
         //отображение игрового поля на экране
         Texture game_field_Texture = Assets.getTexture(Assets.GAME_FIELD);
@@ -55,7 +58,36 @@ public class PlayScreen implements Screen{
         stage.addActor(game_field);
 
         //создание массива пятнашек из класса Breek и отображение его на поле
+        Break[][] breaks = new Break[4][4];
+        for (int j = 0; j < 4; j++)
+            for(int i = 0; i < 4; i++)
+            {
+                breaks[i][j] = new Break(array4x4[i][j], i, j, app.SCREEN_WIDTH, app.SCREEN_HEIGHT,  game_field.getWidth());
+                breaks[i][j].setPosX();
+                breaks[i][j].setPosY();
 
+                breaks[i][j].getImage();
+                /*
+                System.out.println(breaks[i][j].getNum()+ "  " + breaks[i][j].getPosX()+ "  " + breaks[i][j].getPosY());
+                System.out.println("app.SCREEN_WIDTH = " + app.SCREEN_WIDTH);
+                System.out.println("game_field.getWidth() = " + game_field.getWidth());
+                */
+                //breaks[i][j].getImage().setScale((float)(app.SCREEN_WIDTH  / game_field.getWidth()),(float)(app.SCREEN_WIDTH  / game_field.getWidth() ));
+                //breaks[i][j].getImage().setPosition(0, 0);
+                if(breaks[i][j].getNum() != 0)
+                {
+                    breaks[i][j].getImage().setScale((float)(app.SCREEN_WIDTH  / game_field.getWidth()),(float)(app.SCREEN_WIDTH  / game_field.getWidth() ));
+                    breaks[i][j].getImage().setPosition(breaks[i][j].getPosX(), breaks[i][j].getPosY());
+                    stage.addActor(breaks[i][j].getImage());
+                    breaks[i][j].getImage().addListener(new ActorGestureListener(){
+                        @Override
+                        public void tap(InputEvent event, float x, float y, int count, int button){
+                            super.tap(event, x, y, count, button);
+                            //Здесь добавить то, что будем делать при нажатии на пятнашку
+                        }
+                    });
+                }
+            }
     }
 
     public static void shuffleArray(int[] a) {
@@ -72,6 +104,7 @@ public class PlayScreen implements Screen{
         a[i] = a[change];
         a[change] = temp;
     }
+
     private void PrintArray(int[] array)
     {
         for (int j = 0; j < 16; j++)
@@ -79,7 +112,7 @@ public class PlayScreen implements Screen{
         System.out.println();
     }
 
-    private void PrintArray4x4(int[][] array4x4)
+    private void PrintArray(int[][] array4x4)
     {
         for (int j = 0; j < 4; j++)
         {
