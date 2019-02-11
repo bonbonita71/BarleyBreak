@@ -81,13 +81,18 @@ public class Break {
 
     public void setPosX(){
         //НАДО ПОРАБОТАТЬ НАД ФОРМУЛОЙ
-        this.posX = (30 + 512 * posI) * ScreenWidth / (int)FieldWidth ;
+        this.posX = (10 + 512 * posI) * ScreenWidth / (4*512 );
+    }
+    public void setPosX(int posX){
+        //НАДО ПОРАБОТАТЬ НАД ФОРМУЛОЙ
+        this.posX = posX;
     }
 
     public void setPosY(){
         //НАДО ПОРАБОТАТЬ НАД ФОРМУЛОЙ
         //this.posY = (ScreenHeight / 4 - 100 + 512 * 5  - 512 * posJ) * ScreenWidth / (int)FieldWidth ;
-        this.posY = ((ScreenHeight - 512 + 40) / 4 + 512 * 5  - 512 * posJ) * ScreenWidth / (int)FieldWidth ;
+        this.posY = (ScreenHeight   + 512 * (3-posJ)) * ScreenWidth / (4*512 );
+        //this.posY = (ScreenHeight   - 512 * posJ) * ScreenWidth / (4*512 );
     }
 
     public int getPosX(){
