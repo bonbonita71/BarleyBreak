@@ -79,6 +79,14 @@ public class Break {
             this.image = new Image(face);
     }
 
+    public Break(int num, int posI, int posJ, int posX, int posY){
+        this.Num = num;
+        this.posI = posI;
+        this.posJ = posJ;
+        this.posX = posX;
+        this.posY = posY;
+    }
+
     public void setPosX(){
         //НАДО ПОРАБОТАТЬ НАД ФОРМУЛОЙ
         this.posX = (10 + 512 * posI) * ScreenWidth / (4*512 );
@@ -91,7 +99,7 @@ public class Break {
     public void setPosY(){
         //НАДО ПОРАБОТАТЬ НАД ФОРМУЛОЙ
         //this.posY = (ScreenHeight / 4 - 100 + 512 * 5  - 512 * posJ) * ScreenWidth / (int)FieldWidth ;
-        this.posY = (ScreenHeight   + 512 * (3-posJ)) * ScreenWidth / (4*512 );
+        this.posY = (ScreenHeight   + 512 * (2-posJ)) * ScreenWidth / (4*512 );
         //this.posY = (ScreenHeight   - 512 * posJ) * ScreenWidth / (4*512 );
     }
 
@@ -106,7 +114,13 @@ public class Break {
     public Image getImage(){
         return this.image;
     }
+
     public int getNum(){
         return Num;
+    }
+
+    public String getFullInfoAboutBreak()
+    {
+        return "Num " + Num + "\ti=" + posI + "\tj=" + posJ + "\tx=" + posX + "\ty=" + posY ;
     }
 }

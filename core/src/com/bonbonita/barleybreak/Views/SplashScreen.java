@@ -48,7 +48,8 @@ public class SplashScreen implements Screen {
                 parallel(fadeIn(2f, Interpolation.pow2),
                         scaleTo(2f, 2f, 1.5f, Interpolation.pow5),
                         scaleTo(1f, 1f, 1.5f, Interpolation.pow5)),
-                fadeOut(1.25f), run(transitionRunnable)));
+                        fadeOut(1.25f),
+                        run(transitionRunnable)));
 
         stage.addActor(logo);
     }

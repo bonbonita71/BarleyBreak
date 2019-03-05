@@ -17,8 +17,8 @@ public class BarleyBreak extends Game {
 	public RecordScreen recordScreen;
 	public RuleScreen ruleScreen;
 
-	public int SCREEN_WIDTH = 480;
-	public int SCREEN_HEIGHT = 800;
+	public int SCREEN_WIDTH = 720;
+	public int SCREEN_HEIGHT = 1280;
 
 	public OrthographicCamera camera;
 	

@@ -29,6 +29,9 @@ public class Assets
     public static String BREAK_13 = "images/breaks_and_field/13.png";
     public static String BREAK_14 = "images/breaks_and_field/14.png";
     public static String BREAK_15 = "images/breaks_and_field/15.png";
+    public static String REPLAY_BUTTON = "images/buttons/playbtn.png";
+    public static String INFO_BUTTON = "images/buttons/infobtn.png";
+    public static String RECORD_BUTTON = "images/buttons/recordsbtn.png";
 
     private static AssetManager assetManager;
     public static BitmapFont loadingFont;
@@ -54,21 +57,24 @@ public class Assets
     public static void load(){
         assetManager.load(LOGO, Texture.class);
         assetManager.load(GAME_FIELD, Texture.class);
-        assetManager.load(BREAK_01,Texture.class);
-        assetManager.load(BREAK_02,Texture.class);
-        assetManager.load(BREAK_03,Texture.class);
-        assetManager.load(BREAK_04,Texture.class);
-        assetManager.load(BREAK_05,Texture.class);
-        assetManager.load(BREAK_06,Texture.class);
-        assetManager.load(BREAK_07,Texture.class);
-        assetManager.load(BREAK_08,Texture.class);
-        assetManager.load(BREAK_09,Texture.class);
-        assetManager.load(BREAK_10,Texture.class);
-        assetManager.load(BREAK_11,Texture.class);
-        assetManager.load(BREAK_12,Texture.class);
-        assetManager.load(BREAK_13,Texture.class);
-        assetManager.load(BREAK_14,Texture.class);
-        assetManager.load(BREAK_15,Texture.class);
+        assetManager.load(BREAK_01, Texture.class);
+        assetManager.load(BREAK_02, Texture.class);
+        assetManager.load(BREAK_03, Texture.class);
+        assetManager.load(BREAK_04, Texture.class);
+        assetManager.load(BREAK_05, Texture.class);
+        assetManager.load(BREAK_06, Texture.class);
+        assetManager.load(BREAK_07, Texture.class);
+        assetManager.load(BREAK_08, Texture.class);
+        assetManager.load(BREAK_09, Texture.class);
+        assetManager.load(BREAK_10, Texture.class);
+        assetManager.load(BREAK_11, Texture.class);
+        assetManager.load(BREAK_12, Texture.class);
+        assetManager.load(BREAK_13, Texture.class);
+        assetManager.load(BREAK_14, Texture.class);
+        assetManager.load(BREAK_15, Texture.class);
+        assetManager.load(REPLAY_BUTTON, Texture.class);
+        assetManager.load(RECORD_BUTTON, Texture.class);
+        assetManager.load(INFO_BUTTON, Texture.class);
 
     }
 
