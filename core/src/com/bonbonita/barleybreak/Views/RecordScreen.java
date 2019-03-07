@@ -10,6 +10,10 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
+import com.badlogic.gdx.scenes.scene2d.actions.ScaleByAction;
+import com.badlogic.gdx.scenes.scene2d.actions.ScaleToAction;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -62,8 +66,7 @@ public class RecordScreen implements Screen {
                 actors[i][j] = new MyActor(array4x4[i][j], app);
                 if(array4x4[i][j] != 0)
                 {
-
-                    float aspectRatio = (app.SCREEN_WIDTH - 2f * app.SCREEN_WIDTH / 10f)/(4f * actors[i][j].getImage().getWidth());
+                    final float aspectRatio = (app.SCREEN_WIDTH - 2f * app.SCREEN_WIDTH / 10f)/(4f * actors[i][j].getImage().getWidth());
                     actors[i][j].setMyPosition(i, j);
                     actors[i][j].getImage().setScale((float)(aspectRatio),(float)(aspectRatio));
                     actors[i][j].getImage().setPosition(actors[i][j].getPosX(), actors[i][j].getPosY());
@@ -76,26 +79,60 @@ public class RecordScreen implements Screen {
                             super.tap(event, x, y, count, button);
                             //Здесь добавить то, что будем делать при нажатии на пятнашку
                             System.out.println("Pressed the break " + actors[I][J].getNum());
-
+                            //--------------------------------
                             Controller controller = new Controller(I, J, actors);
-                            Break break0 = new Break(0, controller.getI0() , controller.getJ0(),actors[I][J].getPosX(), actors[I][J].getPosY() );
                             if(controller.getDirection().equals("none"))
+                            {
+                                //позже переделать так, чтобы масштабирование проходило относительно центра originX, originY
                                 System.out.println("none");
+                                ScaleToAction scaleByAction1 = new ScaleToAction();
+                                scaleByAction1.setScale(.9f * aspectRatio);
+                                scaleByAction1.setDuration(.2f);
+
+                                ScaleToAction  scaleByAction2 = new ScaleToAction();
+                                scaleByAction2.setScale(1f * aspectRatio);
+                                scaleByAction2.setDuration(.2f );
+
+                                SequenceAction sequenceAction = new SequenceAction(scaleByAction1, scaleByAction2);
+                                actors[I][J].getImage().addAction(sequenceAction);
+                            }
                             else if(controller.getDirection().equals("left"))
                             {
-                                System.out.println("\nleft");
+                                System.out.println("left");
+
+                                for(int i = controller.getI0()+1; i <= I; i++){
+                                    MoveToAction mta = new MoveToAction();
+                                    mta.setPosition(actors[i][J].getPosX() -  512 * aspectRatio, actors[i][J].getPosY());
+                                    actors[i][J].getImage().addAction(mta);
+                                }
                             }
                             else if(controller.getDirection().equals("right"))
                             {
                                 System.out.println("right");
+
+                                for(int i = controller.getI0()-1; i >= I; i--){
+                                    MoveToAction mta = new MoveToAction();
+                                    mta.setPosition(actors[i][J].getPosX() +  512 * aspectRatio, actors[i][J].getPosY());
+                                    actors[i][J].getImage().addAction(mta);
+                                }
                             }
                             else if(controller.getDirection().equals("up"))
                             {
                                 System.out.println("up");
+                                for(int j = controller.getJ0()+1; j <= J; j++){
+                                    MoveToAction mta = new MoveToAction();
+                                    mta.setPosition(actors[I][j].getPosX() , actors[I][j].getPosY()+  512 * aspectRatio);
+                                    actors[I][j].getImage().addAction(mta);
+                                }
                             }
                             else if(controller.getDirection().equals("down"))
                             {
                                 System.out.println("down");
+                                for(int j = controller.getJ0()-1; j >= J; j--){
+                                    MoveToAction mta = new MoveToAction();
+                                    mta.setPosition(actors[I][j].getPosX() , actors[I][j].getPosY()-  512 * aspectRatio);
+                                    actors[I][j].getImage().addAction(mta);
+                                }
                             }
                             //--------------------------------
                         }
