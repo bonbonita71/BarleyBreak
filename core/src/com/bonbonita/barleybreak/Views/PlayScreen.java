@@ -159,6 +159,7 @@ public class PlayScreen implements Screen{
                                     System.out.print(breaks[i][j].getFullInfoAboutBreak() + "\t");
                                 }
                             }
+                            /*
                             Controller controller = new Controller(I, J, breaks);
                             Break break0 = new Break(0, controller.getI0() , controller.getJ0(),breaks[I][J].getPosX(), breaks[I][J].getPosY() );
                             if(controller.getDirection().equals("none"))
@@ -166,11 +167,7 @@ public class PlayScreen implements Screen{
                             else if(controller.getDirection().equals("left"))
                             {
                                 System.out.println("\nleft");
-                                /*
-                                breaks[controller.getI0()][controller.getJ0()] = breaks[I][J];
-                                breaks[I][J] = break0;
-                                breaks[controller.getI0()][controller.getJ0()].getImage().setPosition(breaks[I][J].getPosX(), breaks[I][J].getPosY());
-                                */
+
                                 for(int k = controller.getI0() + 1; k < I; k++){
                                     breaks[I][k].getImage().addAction(Actions.moveTo(breaks[I][k-1].getPosX(), breaks[I][k-1].getPosY(),5, Interpolation.smooth));
                                 }
@@ -206,6 +203,7 @@ public class PlayScreen implements Screen{
                                 }
                             }
                             //----------------------------
+                        */
                         }
                     });
                 }

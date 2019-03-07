@@ -1,20 +1,22 @@
 package com.bonbonita.barleybreak.Controllers;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.bonbonita.barleybreak.Models.Break;
+import com.bonbonita.barleybreak.Models.MyActor;
 
 /**
  * Created by BonBonita on 10.02.2019.
  */
 
 public class Controller {
-    Break[][] breaks = new Break[4][4];
+    MyActor[][] breaks = new MyActor[4][4] ;
     int i;
     int j;
     int i0;
     int j0;
     String direction ="";
 
-    public Controller(int i, int j, Break[][] breaks){
+    public Controller(int i, int j, MyActor[][] breaks){
         this.i = i;
         this.j = j;
         this.breaks = breaks;

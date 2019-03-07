@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.bonbonita.barleybreak.BarleyBreak;
+import com.bonbonita.barleybreak.Controllers.Controller;
 import com.bonbonita.barleybreak.Models.Break;
 import com.bonbonita.barleybreak.Models.MyActor;
 
@@ -58,9 +59,10 @@ public class RecordScreen implements Screen {
         for (int j = 0; j < 4; j++)
             for(int i = 0; i< 4; i++)
             {
+                actors[i][j] = new MyActor(array4x4[i][j], app);
                 if(array4x4[i][j] != 0)
                 {
-                    actors[i][j] = new MyActor(array4x4[i][j], app);
+
                     float aspectRatio = (app.SCREEN_WIDTH - 2f * app.SCREEN_WIDTH / 10f)/(4f * actors[i][j].getImage().getWidth());
                     actors[i][j].setMyPosition(i, j);
                     actors[i][j].getImage().setScale((float)(aspectRatio),(float)(aspectRatio));
@@ -75,13 +77,39 @@ public class RecordScreen implements Screen {
                             //Здесь добавить то, что будем делать при нажатии на пятнашку
                             System.out.println("Pressed the break " + actors[I][J].getNum());
 
+                            Controller controller = new Controller(I, J, actors);
+                            Break break0 = new Break(0, controller.getI0() , controller.getJ0(),actors[I][J].getPosX(), actors[I][J].getPosY() );
+                            if(controller.getDirection().equals("none"))
+                                System.out.println("none");
+                            else if(controller.getDirection().equals("left"))
+                            {
+                                System.out.println("\nleft");
+                            }
+                            else if(controller.getDirection().equals("right"))
+                            {
+                                System.out.println("right");
+                            }
+                            else if(controller.getDirection().equals("up"))
+                            {
+                                System.out.println("up");
+                            }
+                            else if(controller.getDirection().equals("down"))
+                            {
+                                System.out.println("down");
+                            }
+                            //--------------------------------
                         }
                     });
                 }
             }
     }
 
-    public void updateMyActorsArray(MyActor[][] actors) {
+    public void updateMyActorsArray(int[][] array4x4, MyActor[][] actors) {
+        for (int j = 0; j < 4; j++)
+            for(int i = 0; i< 4; i++)
+            {
+
+            }
 
     }
 
