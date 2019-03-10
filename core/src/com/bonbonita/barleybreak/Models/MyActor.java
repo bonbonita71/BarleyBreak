@@ -26,6 +26,9 @@ public class MyActor  {
         this.app = app;
         this.Num = Num;
         switch (Num) {
+            case 0:
+                face = Assets.getTexture(Assets.BREAK_00);
+                break;
             case 1:
                 face = Assets.getTexture(Assets.BREAK_01);
                 break;
@@ -72,26 +75,19 @@ public class MyActor  {
                 face = Assets.getTexture(Assets.BREAK_15);
                 break;
         }
-        if(Num != 0)
-            image = new Image(face);
+
+        image = new Image(face);
     }
 
     public void setMyPosition(int i, int j){
         float aspectRatio = (app.SCREEN_WIDTH - 2f * app.SCREEN_WIDTH / 10f)/(4f * face.getWidth());
         this.posX = (int)(app.SCREEN_WIDTH/10 + i * face.getWidth() * aspectRatio);
         this.posY = (int)(app.SCREEN_HEIGHT/5 + (4 - j)* face.getWidth() * aspectRatio);
-        /*
-        System.out.println("app.SCREEN_WIDTH " + app.SCREEN_WIDTH);
-        System.out.println("face.getWidth() " + face.getWidth());
-        System.out.println("aspectRatio " + aspectRatio);
-        System.out.println("i = " + i + " j = " + j + " posX " + posX +" posY " +  posY);
-        */
     }
 
     public Image getImage(){
         return image;
     }
-
     public int getPosX(){
         return posX;
     }

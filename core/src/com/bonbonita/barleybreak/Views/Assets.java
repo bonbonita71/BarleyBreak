@@ -14,6 +14,7 @@ public class Assets
     //static names for assets, for easear usage
     public static String LOGO = "images/logo.png";
     public static String GAME_FIELD = "images/breaks_and_field/gamefield.png";
+    public static String BREAK_00 = "images/breaks_and_field/00.png";
     public static String BREAK_01 = "images/breaks_and_field/01.png";
     public static String BREAK_02 = "images/breaks_and_field/02.png";
     public static String BREAK_03 = "images/breaks_and_field/03.png";
@@ -57,6 +58,7 @@ public class Assets
     public static void load(){
         assetManager.load(LOGO, Texture.class);
         assetManager.load(GAME_FIELD, Texture.class);
+        assetManager.load(BREAK_00, Texture.class);
         assetManager.load(BREAK_01, Texture.class);
         assetManager.load(BREAK_02, Texture.class);
         assetManager.load(BREAK_03, Texture.class);

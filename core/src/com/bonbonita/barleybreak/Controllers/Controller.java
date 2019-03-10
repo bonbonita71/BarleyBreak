@@ -9,14 +9,14 @@ import com.bonbonita.barleybreak.Models.MyActor;
  */
 
 public class Controller {
-    MyActor[][] breaks = new MyActor[4][4] ;
+    int[][] breaks = new int[4][4] ;
     int i;
     int j;
     int i0;
     int j0;
     String direction ="";
 
-    public Controller(int i, int j, MyActor[][] breaks){
+    public Controller(int i, int j, int[][] breaks){
         this.i = i;
         this.j = j;
         this.breaks = breaks;
@@ -32,7 +32,7 @@ public class Controller {
     public void WhereIs0(){
         for (int j = 0; j < 4; j++)
             for(int i = 0; i < 4; i++)
-                if(breaks[i][j].getNum() == 0)
+                if(breaks[i][j] == 0)
                 {
                     i0 = i;
                     j0 = j;

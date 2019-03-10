@@ -3,6 +3,7 @@ package com.bonbonita.barleybreak;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.bonbonita.barleybreak.Views.Assets;
+import com.bonbonita.barleybreak.Views.GameScreen;
 import com.bonbonita.barleybreak.Views.LoadingScreen;
 import com.bonbonita.barleybreak.Views.PlayScreen;
 import com.bonbonita.barleybreak.Views.RecordScreen;
@@ -16,6 +17,7 @@ public class BarleyBreak extends Game {
 	public PlayScreen playScreen;
 	public RecordScreen recordScreen;
 	public RuleScreen ruleScreen;
+	public GameScreen gameScreen;
 
 	public int SCREEN_WIDTH = 720;
 	public int SCREEN_HEIGHT = 1280;
@@ -34,6 +36,8 @@ public class BarleyBreak extends Game {
 		playScreen = new PlayScreen(this);
 		recordScreen = new RecordScreen(this);
 		ruleScreen = new RuleScreen(this);
+		gameScreen = new GameScreen(this);
+
 
 		setScreen(loadingScreen);
 
