@@ -1,10 +1,6 @@
 package com.bonbonita.barleybreak.Models;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.bonbonita.barleybreak.BarleyBreak;
 import com.bonbonita.barleybreak.Views.Assets;
@@ -75,14 +71,13 @@ public class MyActor  {
                 face = Assets.getTexture(Assets.BREAK_15);
                 break;
         }
-
         image = new Image(face);
     }
 
     public void setMyPosition(int i, int j){
         float aspectRatio = (app.SCREEN_WIDTH - 2f * app.SCREEN_WIDTH / 10f)/(4f * face.getWidth());
-        this.posX = (int)(app.SCREEN_WIDTH/10 + i * face.getWidth() * aspectRatio);
-        this.posY = (int)(app.SCREEN_HEIGHT/5 + (4 - j)* face.getWidth() * aspectRatio);
+        this.posX = (int)(app.SCREEN_WIDTH/10 + j * face.getWidth() * aspectRatio);
+        this.posY = (int)(app.SCREEN_HEIGHT/5 + (4 - i)* face.getWidth() * aspectRatio);
     }
 
     public Image getImage(){

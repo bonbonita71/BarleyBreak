@@ -9,7 +9,7 @@ import com.bonbonita.barleybreak.Models.MyActor;
  */
 
 public class Controller {
-    int[][] breaks = new int[4][4] ;
+    //int[][] breaks = new int[4][4] ;
     int i;
     int j;
     int i0;
@@ -19,8 +19,8 @@ public class Controller {
     public Controller(int i, int j, int[][] breaks){
         this.i = i;
         this.j = j;
-        this.breaks = breaks;
-        WhereIs0();
+        //this.breaks = breaks;
+        WhereIs0(i, j, breaks);
         if(j == j0)
             direction = (i < i0)? "right" : "left";
         else if(i == i0)
@@ -29,14 +29,18 @@ public class Controller {
             direction = "none";
     }
 
-    public void WhereIs0(){
-        for (int j = 0; j < 4; j++)
-            for(int i = 0; i < 4; i++)
+    public void WhereIs0(int I, int J, int[][] breaks){
+        //this.i = I;
+        //this.j = J;
+        for(int i = 0; i < 4; i++)
+            for (int j = 0; j < 4; j++)
                 if(breaks[i][j] == 0)
                 {
                     i0 = i;
                     j0 = j;
                 }
+        System.out.println("i = " + i + " j = " + j);
+        System.out.println("i0 = " + i0 + " j0 = " + j0);
     }
 
 

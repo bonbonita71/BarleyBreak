@@ -4,12 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.ScaleToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.bonbonita.barleybreak.BarleyBreak;
 import com.bonbonita.barleybreak.Controllers.Controller;
@@ -41,24 +46,48 @@ public class GameScreen implements Screen {
         stage = new Stage(new FitViewport(app.SCREEN_WIDTH, app.SCREEN_HEIGHT));
         Gdx.input.setInputProcessor(stage);
 
-        actors = new MyActor[16];
-        for (int i = 0; i< actors.length; i++)
-            actors[i] = new MyActor(i, app);
+        final Image background = new Image(Assets.getTexture(Assets.BACKGROUND));;
+        background.setPosition(0, 0);
+        background.setScale(app.SCREEN_HEIGHT/ background.getHeight());
+        stage.addActor(background);
 
+        Texture replay_Texture = Assets.getTexture(Assets.REPLAY_BUTTON);
+        ImageButton replay = new ImageButton(new TextureRegionDrawable(new TextureRegion(replay_Texture)));
+        replay.setPosition(app.SCREEN_WIDTH  - replay.getWidth() -15,  app.SCREEN_HEIGHT - replay.getHeight()-15 );
+        stage.addActor(replay);
+        replay.addListener(new ActorGestureListener(){
+            @Override
+            public void tap(InputEvent event, float x, float y, int count, int button){
+                super.tap(event, x, y, count, button);
+                //-----------------------------------------------------------------
+                app.setScreen(new LoadingScreen(app));
+                //--------------------------------------------------------------------
+                dispose();
+            }
+        });
+
+
+
+        actors = new MyActor[16];
+
+        System.out.println("1D array in start:");
         PrintArray(array);
         shuffleArray(array);
+        System.out.println("1D array after shuffle:");
+        PrintArray(array);
         int k = 0;
-        for (int j = 0; j < 4; j++)
-            for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 4; i++)
+            for (int j = 0; j < 4; j++)
             {
                 array4x4[i][j] = array[k];
                 k++;
             }
+        System.out.println("2D array :");
         PrintArray(array4x4);
 
         k=0;
-        for (int j = 0; j < 4; j++)
-            for(int i = 0; i< 4; i++)
+        for(int i = 0; i< 4; i++)
+            for (int j = 0; j < 4; j++)
             {
                 actors[k] = new MyActor(array4x4[i][j], app);
                 if(array4x4[i][j] != 0)
@@ -79,12 +108,15 @@ public class GameScreen implements Screen {
                             System.out.println("Pressed the break " + actors[K].getNum());
                             //--------------------------------
                             Controller controller = new Controller(I, J, array4x4);
-                            controller.WhereIs0();
+                            controller.WhereIs0(I, J, array4x4);
                             if(controller.getDirection().equals("none"))
                             {
                                 //позже переделать так, чтобы масштабирование проходило относительно центра originX, originY
                                 System.out.println("none");
+                               // actors[K].getImage().setOrigin(actors[K].getImage().getWidth()/2f, actors[K].getImage().getHeight() / 2f);
+
                                 ScaleToAction scaleByAction1 = new ScaleToAction();
+
                                 scaleByAction1.setScale(.9f * aspectRatio);
                                 scaleByAction1.setDuration(.2f);
 
@@ -94,17 +126,20 @@ public class GameScreen implements Screen {
 
                                 SequenceAction sequenceAction = new SequenceAction(scaleByAction1, scaleByAction2);
                                 actors[K].getImage().addAction(sequenceAction);
+                               // actors[K].getImage().setOrigin(0, 0);
                             }
                             else if(controller.getDirection().equals("left"))
                             {
                                 System.out.println("left");
 
                                 for(int i = controller.getI0()+1; i <= I; i++){
+                                    int temp = array4x4[i-1][J];
                                     array4x4[i-1][J] = array4x4[i][J];
                                     if(i == I)
                                         array4x4[i][J] = 0;
 
                                 }
+                                controller.WhereIs0(I, J, array4x4);
                             }
                             else if(controller.getDirection().equals("right"))
                             {
@@ -115,6 +150,7 @@ public class GameScreen implements Screen {
                                     if(i == I)
                                         array4x4[i][J] = 0;
                                 }
+                                controller.WhereIs0(I, J, array4x4);
                             }
                             else if(controller.getDirection().equals("up"))
                             {
@@ -124,6 +160,7 @@ public class GameScreen implements Screen {
                                     if(j == J)
                                         array4x4[I][j] = 0;
                                 }
+                                controller.WhereIs0(I, J, array4x4);
                             }
                             else if(controller.getDirection().equals("down"))
                             {
@@ -133,6 +170,7 @@ public class GameScreen implements Screen {
                                     if(j == J)
                                         array4x4[I][j] = 0;
                                 }
+                                controller.WhereIs0(I, J, array4x4);
                             }
                             //--------------------------------
                             PrintArray(array4x4);
@@ -164,16 +202,16 @@ public class GameScreen implements Screen {
 
     private void PrintArray(int[] array)
     {
-        for (int j = 0; j < 16; j++)
-            System.out.print(array[j] + " " );
+        for (int i = 0; i < 16; i++)
+            System.out.print(array[i] + " " );
         System.out.println();
     }
 
     private void PrintArray(int[][] array4x4)
     {
-        for (int j = 0; j < 4; j++)
+        for(int i = 0; i < 4; i++)
         {
-            for(int i = 0; i < 4; i++)
+            for (int j = 0; j < 4; j++)
             {
                 System.out.print(array4x4[i][j] + " " );
             }
