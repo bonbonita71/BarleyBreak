@@ -71,7 +71,6 @@ public class PlayScreen implements Screen{
         stage.addActor(game_field);
 
         //отображение кнопок на экране
-
         Texture replay_Texture = Assets.getTexture(Assets.REPLAY_BUTTON);
         ImageButton replay = new ImageButton(new TextureRegionDrawable(new TextureRegion(replay_Texture)));
         replay.setPosition(app.SCREEN_WIDTH  - replay.getWidth() -15,  app.SCREEN_HEIGHT - replay.getHeight()-15 );

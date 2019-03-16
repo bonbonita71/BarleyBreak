@@ -93,9 +93,13 @@ public class GameScreen implements Screen {
                 if(array4x4[i][j] != 0)
                 {
                     final float aspectRatio = (app.SCREEN_WIDTH - 2f * app.SCREEN_WIDTH / 10f)/(4f * actors[k].getImage().getWidth());
+                    actors[k].getImage().setOrigin( actors[k].getImage().getWidth() / 2f,  actors[k].getImage().getHeight() / 2f);
+                    System.out.println( actors[k].getImage().getWidth() / 2f);
+                    System.out.println( actors[k].getImage().getHeight() / 2f);
                     actors[k].setMyPosition(i, j);
                     actors[k].getImage().setScale((float)(aspectRatio),(float)(aspectRatio));
-                    actors[k].getImage().setPosition(actors[k].getPosX(), actors[k].getPosY());
+                    actors[k].getImage().setPosition(actors[k].getPosX(), actors[k].getPosY() );
+
                     stage.addActor(actors[k].getImage());
                     final int I = i;//нельзя во внутреннем классе использовать не final int i
                     final int J = j;
@@ -113,10 +117,7 @@ public class GameScreen implements Screen {
                             {
                                 //позже переделать так, чтобы масштабирование проходило относительно центра originX, originY
                                 System.out.println("none");
-                               // actors[K].getImage().setOrigin(actors[K].getImage().getWidth()/2f, actors[K].getImage().getHeight() / 2f);
-
                                 ScaleToAction scaleByAction1 = new ScaleToAction();
-
                                 scaleByAction1.setScale(.9f * aspectRatio);
                                 scaleByAction1.setDuration(.2f);
 
@@ -126,7 +127,8 @@ public class GameScreen implements Screen {
 
                                 SequenceAction sequenceAction = new SequenceAction(scaleByAction1, scaleByAction2);
                                 actors[K].getImage().addAction(sequenceAction);
-                               // actors[K].getImage().setOrigin(0, 0);
+
+
                             }
                             else if(controller.getDirection().equals("left"))
                             {
