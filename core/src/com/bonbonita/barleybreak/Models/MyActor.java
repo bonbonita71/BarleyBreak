@@ -15,6 +15,8 @@ public class MyActor  {
     Image image;
     int posX;
     int posY;
+    int posI;
+    int posJ;
     int Num;
 
 
@@ -75,6 +77,8 @@ public class MyActor  {
     }
 
     public void setMyPosition(int i, int j){
+        this.posI = i;
+        this.posJ = j;
         float aspectRatio = (app.SCREEN_WIDTH - 2f * app.SCREEN_WIDTH / 10f)/(4f * face.getWidth());
         this.posX = (int)(app.SCREEN_WIDTH/10f + j * face.getWidth() * aspectRatio -1.25 * face.getWidth() * aspectRatio);
         this.posY = (int)(app.SCREEN_HEIGHT/5f + (4f - i)* face.getWidth() * aspectRatio - 1.25 *  face.getWidth() * aspectRatio);
@@ -97,6 +101,12 @@ public class MyActor  {
     }
     public int getPosY(){
         return posY;
+    }
+    public int getPosI(){
+        return posI;
+    }
+    public int getPosJ(){
+        return posJ;
     }
     public int getNum(){
         return Num;

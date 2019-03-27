@@ -24,19 +24,19 @@ public class Controller {
         if(j == j0)
             direction = (i < i0)? "right" : "left";
         else if(i == i0)
-            direction = (j < j0)? "down" : "up";
+            direction = (j < j0)? "down" : "up" ;
         else
             direction = "none";
     }
 
     public void WhereIs0(int I, int J, int[][] breaks){
-        //this.i = I;
-        //this.j = J;
-        for(int i = 0; i < 4; i++)
+        this.i = I;
+        this.j = J;
+        for(int k = 0; k < 4; k++)
             for (int j = 0; j < 4; j++)
-                if(breaks[i][j] == 0)
+                if(breaks[k][j] == 0)
                 {
-                    i0 = i;
+                    i0 = k;
                     j0 = j;
                 }
         System.out.println("i = " + i + " j = " + j);
@@ -52,5 +52,11 @@ public class Controller {
     }
     public int getJ0(){
         return this.j0;
+    }
+    public int getI(){
+        return this.i;
+    }
+    public int getJ(){
+        return this.j;
     }
 }

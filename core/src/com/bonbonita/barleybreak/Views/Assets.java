@@ -33,6 +33,7 @@ public class Assets
     public static String REPLAY_BUTTON = "images/buttons/playbtn.png";
     public static String INFO_BUTTON = "images/buttons/infobtn.png";
     public static String RECORD_BUTTON = "images/buttons/recordsbtn.png";
+    public static String WELLDONE_BUTTON = "images/buttons/welldonebtn.png";
     public static String BACKGROUND = "images/background.png";
 
     private static AssetManager assetManager;
@@ -78,6 +79,7 @@ public class Assets
         assetManager.load(REPLAY_BUTTON, Texture.class);
         assetManager.load(RECORD_BUTTON, Texture.class);
         assetManager.load(INFO_BUTTON, Texture.class);
+        assetManager.load(WELLDONE_BUTTON, Texture.class);
         assetManager.load(BACKGROUND, Texture.class);
 
     }
